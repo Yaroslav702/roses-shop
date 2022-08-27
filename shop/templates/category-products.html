@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block products_list %}
+<div class="d-flex justify-content-between flex-wrap">
+{% for product in cat_products %}
+<div class="card mb-5 p-2" style="width: 18rem">
+    <img src='{{ product.photo.url }}' class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title"> {{ product.name }} </h5>
+      <p class='card-category'> {{ product.category }}</p>
+      <p class="card-text">
+        {{ product.description }}
+      </p>
+      <p>
+          <span class='fw-bold'>Ціна:</span> {{ product.price }} uah
+      </p>
+      <a href="#" class="btn btn-primary">Купити</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock products_list %}
+
+

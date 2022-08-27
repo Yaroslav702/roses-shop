@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block register %}
+
+<form method='POST'>
+    {% csrf_token %}
+    <h1 class="h3 mb-3 fw-normal">LOGIN</h1>
+
+    <div class="input-group mb-3">
+        <input type="text" name="username">
+    </div>
+    <div class="input-group mb-2">
+        <input type="password" name="password">
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+    </div>
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            Don't have an account? <a href="{% url 'register' %}" class="ml-2"> Sign Up</a>
+        </div>
+    </div> 
+</form>
+
+{% for message in messages %}
+<p id='messages'>{{ message }}</p>
+{% endfor %}
+
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder='Username';
+    form_fields[2].placeholder='Password';
+    
+    
+    for (var field in form_fields){	
+    form_fields[field].className += ' form-control'
+    }
+    </script>
+{% endblock register %}
+
+
+
+
+

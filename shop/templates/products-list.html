@@ -1,0 +1,29 @@
+{% extends 'index.html' %} 
+{% block products_list %}
+
+<div class="d-flex justify-content-between flex-wrap">
+{% for product in products%}
+{% if product.is_published %}
+<div class="card mb-5 p-2" style="width: 18rem">
+  <img src='{{ product.photo.url }}' class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title"> {{ product.name }} </h5>
+    <p class='card-category'> <a href="{% url 'category' product.category %}">{{ product.category }}</a></p>
+    <p class="card-text">
+      {{ product.description|truncatewords:15 }}
+    </p>
+    <p>
+        <span class='fw-bold'>Price:</span> {{ product.price }} $
+    </p>
+    <form method='POST' action="{% url 'cart_add' product_id=product.id %}">
+      {% csrf_token %}
+      <button type='submit' class="btn btn-primary">Buy</button>
+    </form>
+    
+  </div>
+</div>
+{% endif %}
+
+{% endfor %}
+</div>
+ {% endblock products_list %}
